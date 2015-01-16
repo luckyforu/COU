@@ -1,0 +1,17 @@
+﻿<ion-view title="GeoLocation" ng-controller="geoLocationCtrl">
+    <ion-content class="has-header padding">
+        <div class="row">
+            <div class="col">
+                <button class="button button-dark" ng-click="getLocation()">Get Location</button>
+                <div class="row">
+                    <div class="col">
+                        <label class="input-label">Latitude - {{myPosition.latitude}}</label>
+                    </div>
+                    <div class="col">
+                        <label class="input-label">Longitude - {{myPosition.longitude}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

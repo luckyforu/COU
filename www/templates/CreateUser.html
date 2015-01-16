@@ -1,0 +1,75 @@
+<ion-view title="BasicInfo" ng-controller="userDetailCtrl">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+        <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content class="has-header">
+        <h3>User Profile</h3>
+        <form role="form" class="form-inline" name="createUserFrom" ng-submit="createUser(user)">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">UserId</span>
+                    <input type="text" name="userId" ng-model="user.userId">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="user.name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Status</span>
+                    <input type="text" ng-model="user.status">
+                </label>
+                <label class="item item-input">
+                    <div class="input-label">
+                        BasicInfo
+                        <label type="text">
+                            <label class="item item-input">
+                                <span class="input-label">Gender</span>
+                                <input type="text" ng-model="user.basicInfo.gender">
+                            </label>
+                        </label>
+                        <label type="text">
+                            <label class="item item-input">
+                                <span class="input-label">Date Of Birth</span>
+                                <input type="text" ng-model="user.basicInfo.dob">
+                            </label>
+                        </label>
+                        <label type="text">
+                            <label class="item item-input">
+                                <span class="input-label">Current City</span>
+                                <input type="text" ng-model="user.basicInfo.currentCity">
+                            </label>
+                        </label>
+                        <label type="text">
+                            <label class="item item-input">
+                                <span class="input-label">Languages Known</span>
+                                <input type="text" ng-model="user.basicInfo.languages">
+                            </label>
+                        </label>
+                    </div>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Education</span>
+                    <input type="text" ng-model="user.education">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Work</span>
+                    <input type="text" ng-model="user.work">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Relationship</span>
+                    <input type="text" ng-model="user.relationship">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Interests</span>
+                    <input type="text" ng-model="user.interests">
+                </label>
+                <label class="item">
+                    <button type="submit" class="button button-block button-positive">Save Changes</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
