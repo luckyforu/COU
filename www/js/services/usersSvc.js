@@ -3,7 +3,7 @@ angular.module('checkout').factory('usersSvc', ['$http', '$q', usersSvc]);
 
 function usersSvc($http, $q) {
 	
-	var server = "http://localhost:3030";
+	var server = "https://warm-brook-1127.herokuapp.com";
     function getUsers() {
         var defer = $q.defer();
         $http.get(server + "/api/users")
