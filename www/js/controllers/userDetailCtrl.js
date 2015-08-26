@@ -2,6 +2,7 @@
 angular.module('checkout').controller('userDetailCtrl', ['$scope', '$state', '$location', 'usersSvc', userDetailCtrl]);
 
 function userDetailCtrl($scope, $state, $location, usersSvc) {
+
     var selectUser = function () {
         var userId = $state.params.userId;
         usersSvc.getUserDetail(userId).then(function (response) {

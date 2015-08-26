@@ -1,0 +1,30 @@
+﻿<ion-view title="Register" ng-controller="registrationCtrl">
+    <ion-header-bar>
+        <h1 class="title">Register</h1>
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeRegister()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <form name="registerUser">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="email" ng-model="registerUser.email" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="registerUser.password" required>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Confirm Password</span>
+                    <input type="password" ng-model="registerUser.confirmPassword">
+                    <label ng-show="registerUser.confirmPassword.$dirty">Please match passwords</label>
+                </label>
+                <label class="item">
+                    <button ng-disabled="registerUser.$invalid" type="submit" class="button button-block button-positive" ng-click="register(registerUser)">Register</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

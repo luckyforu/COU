@@ -15,16 +15,22 @@
         </header>
         <ion-content class="has-header">
             <ion-list>
-                <ion-item nav-clear menu-close ng-click="login()">
+                <ion-item nav-clear menu-close ui-sref-active="active" href="#/app/accordion">
+                    Accordion
+                </ion-item>
+                <ion-item nav-clear menu-close ui-sref-active="active" href="#/app/register">
+                    Register
+                </ion-item>
+                <ion-item nav-clear menu-close ui-sref-active="active" ng-click="#/app/login">
                     Login
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/editProfile">
+                <ion-item nav-clear menu-close ui-sref-active="active" href="#/app/editProfile">
                     Edit Profile
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/createUser">
+                <ion-item nav-clear menu-close ui-sref-active="active" href="#/app/createUser" >
                     Create User
                 </ion-item>
-                <ion-item nav-clear menu-close href="#/app/users">
+                <ion-item nav-clear menu-close ui-sref-active="active" href="#/app/users" >
                     Users
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/picture">
@@ -35,6 +41,9 @@
                 </ion-item>
                 <ion-item nav-clear menu-close href="#/app/aboutUs">
                     AboutUs
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/logout">
+                    Logout
                 </ion-item>
             </ion-list>
         </ion-content>
