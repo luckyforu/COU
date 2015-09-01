@@ -5,7 +5,6 @@ function usersCtrl($state,$stateParams, $scope, $http, $cordovaGeolocation, geol
 
 
     var getUsers = function () {
-        console.log($stateParams);
         geolocationSvc.getLocation().then(function (location) {
             console.log(location);
 
@@ -22,7 +21,21 @@ function usersCtrl($state,$stateParams, $scope, $http, $cordovaGeolocation, geol
             });
 
         }, function (error) {
-            console.log(error);
+            alert(error);
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                default:
+                    alert("An unknown error occurred.");
+                    break;
+            }
         });
 
         //setTimeout(getUsers, 10000);
