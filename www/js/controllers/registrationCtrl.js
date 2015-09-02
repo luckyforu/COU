@@ -1,21 +1,28 @@
 ﻿'use strict';
-angular.module('checkout').controller('registrationCtrl', ['$scope', '$state', '$cordovaToast', 'registrationSvc', registrationCtrl]);
+angular.module('checkout').controller('registrationCtrl', ['$scope', '$state', '$cordovaNetwork', 'registrationSvc', registrationCtrl]);
 
-function registrationCtrl($scope, $state, $cordovaToast, registrationSvc) {
+function registrationCtrl($scope, $state, $cordovaNetwork, registrationSvc) {
+
+    //var isOnline = $cordovaNetwork.isOnline();
+    //if (!isOnline) {
+    //    alert("You are offline");
+    //    $state.go("app.error.noInternet");
+    //}
 
     $scope.register = function (registerUser) {
 
         registrationSvc.isUsernameAlreadyInUse(registerUser).then(function (response) {
             console.log("Username available");
-            //$cordovaToast.show('Here is a message', 'long', 'center')
+
+
+            registrationSvc.registerUser(registerUser).then(function (res) {
+            console.log("Registered successfully");
+            //$cordovaToast.show('Registered successfully', 'long', 'center')
             //.then(function (success) {
             //    // success
             //}, function (error) {
             //    // error
             //});
-
-            registrationSvc.registerUser(registerUser).then(function (res) {
-                console.log("Registered successfully");
                 $state.go("app.users");
             }, function (error) {
                 console.log("Registration failed" + error);
@@ -42,4 +49,5 @@ function registrationCtrl($scope, $state, $cordovaToast, registrationSvc) {
             console.log("Login failed" + error);
         });
     };
+
 }

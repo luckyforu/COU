@@ -11,7 +11,7 @@ function geolocationSvc($cordovaGeolocation, $q) {
             .then(function (position) {
                 myPosition.latitude = position.coords.latitude;
                 myPosition.longitude = position.coords.longitude;
-                return $q.resolve(myPosition);
+                return myPosition;
             }, function (error) {
                 return $q.reject(error);
             });

@@ -1,3 +1,4 @@
+/// <reference path="../templates/Error_NoInternet.html" />
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -166,6 +167,17 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
               }
           }
       })
+
+    .state('app.error', {
+        url: "/error",
+        controller: 'errorCtrl',
+        views: {
+            'menuContent': {
+                templateUrl: "templates/Error_NoInternet.html",
+
+            }
+        }
+    })
 
     ;
 
