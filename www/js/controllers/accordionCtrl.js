@@ -2,7 +2,19 @@
 angular.module('checkout').controller('accordionCtrl', ['$scope', '$state','usersSvc', accordionCtrl]);
 
 function accordionCtrl($scope, $state, usersSvc) {
-    //$scope = {};
+
+    $scope.profile = {};
+    $scope.profile.basicInfo = {};
+    $scope.profile.education = {};
+    $scope.profile.work = {};
+    $scope.profile.relationship = {};
+    $scope.profile.interests = {};
+
+    usersSvc.getUserProfile().then(function (response) {
+        $scope.profile = response.profile;
+    }, function (error) {
+        console.log("Not able to get profile " + error);
+    });
 
     var groupName = Object.freeze({
         "BasicInfo": 0,
@@ -11,6 +23,12 @@ function accordionCtrl($scope, $state, usersSvc) {
         "RelationShip": 3,
         "Interests": 4
     });
+
+    $scope.profile.basicInfo.isExpanded = false;
+    $scope.profile.education.isExpanded = false;
+    $scope.profile.work.isExpanded = false;
+    $scope.profile.relationship.isExpanded = false;
+    $scope.profile.interests.isExpanded = false;
 
     var emptyProfile = function () {
         $scope.profile = {};
@@ -23,11 +41,7 @@ function accordionCtrl($scope, $state, usersSvc) {
 
     emptyProfile();
 
-    $scope.profile.basicInfo.isExpanded = false;
-    $scope.profile.education.isExpanded = false;
-    $scope.profile.work.isExpanded = false;
-    $scope.profile.relationship.isExpanded = false;
-    $scope.profile.interests.isExpanded = false;
+    
 
     $scope.expandGroup = function (group) {
         switch (group) {

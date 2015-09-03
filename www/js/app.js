@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
 
-.run(function ($ionicPlatform) {
+.run(['$ionicPlatform', '$cordovaNetwork', '$state', function ($ionicPlatform, $cordovaNetwork, $state) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -18,8 +18,19 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
+
+        if ($cordovaNetwork.isOnline()) {
+            $state.go("app.users");
+        }
+        else {
+            $state.go("app.noInternet");
+        }
     });
-})
+
+
+
+
+}])
 
 .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
@@ -168,16 +179,14 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
           }
       })
 
-    .state('app.error', {
-        url: "/error",
-        controller: 'errorCtrl',
-        views: {
-            'menuContent': {
-                templateUrl: "templates/Error_NoInternet.html",
-
+        .state('app.noInternet', {
+            url: "/noInternet",
+            views: {
+                'menuContent': {
+                    templateUrl: "templates/Error_NoInternet.html",
+                }
             }
-        }
-    })
+        })
 
     ;
 

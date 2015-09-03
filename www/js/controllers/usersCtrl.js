@@ -7,17 +7,20 @@ function usersCtrl($state,$stateParams, $scope, $http, $cordovaGeolocation, geol
     var getUsers = function () {
         geolocationSvc.getLocation().then(function (location) {
             console.log(location);
-
             //Get user based on current location
             usersSvc.getUsers(location).then(function (response) {
                 $scope.users = response;
+            }, function (error) {
+                console.log("Not able to get users with this location " + error);
+                $cordovaToast.show('Did not get users with your location', 'long', 'bottom')
+                .then(function (success) { }, function (error) { });
             });
 
             //Update user current location for other users to this user
             usersSvc.updateUserLocation(location).then(function () {
                 console.log("successfully updated user location");
             }, function (error) {
-                console.log("User location update failed" + error);
+                console.log("User location update failed " + error);
             });
 
         }, function (error) {

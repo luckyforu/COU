@@ -1,7 +1,7 @@
 ﻿'use strict';
-angular.module('checkout').controller('registrationCtrl', ['$scope', '$state', '$cordovaNetwork', 'registrationSvc', registrationCtrl]);
+angular.module('checkout').controller('registrationCtrl', ['$scope', '$state', '$cordovaToast', '$cordovaNetwork', 'registrationSvc', registrationCtrl]);
 
-function registrationCtrl($scope, $state, $cordovaNetwork, registrationSvc) {
+function registrationCtrl($scope, $state, $cordovaToast, $cordovaNetwork, registrationSvc) {
 
     //var isOnline = $cordovaNetwork.isOnline();
     //if (!isOnline) {
@@ -13,22 +13,21 @@ function registrationCtrl($scope, $state, $cordovaNetwork, registrationSvc) {
 
         registrationSvc.isUsernameAlreadyInUse(registerUser).then(function (response) {
             console.log("Username available");
-
-
             registrationSvc.registerUser(registerUser).then(function (res) {
-            console.log("Registered successfully");
-            //$cordovaToast.show('Registered successfully', 'long', 'center')
-            //.then(function (success) {
-            //    // success
-            //}, function (error) {
-            //    // error
-            //});
+                console.log("Registered successfully");
+                $cordovaToast.show('Registered successfully', 'short', 'bottom')
+                .then(function (success) { }, function (error) { });
+
                 $state.go("app.users");
             }, function (error) {
-                console.log("Registration failed" + error);
+                console.log("Registration failed " + error);
+                $cordovaToast.show('Registered failed', 'long', 'center')
+                .then(function (success) { }, function (error) { });
             });
         }, function (err) {
-            console.log("Username unavailable" + err);
+            console.log("Username unavailable " + err);
+            $cordovaToast.show('Username in use, Please choose other username', 'long', 'center')
+                .then(function (success) { }, function (error) { });
         });
 
     }
@@ -46,7 +45,9 @@ function registrationCtrl($scope, $state, $cordovaNetwork, registrationSvc) {
 
             $state.go("app.users", { user: response });
         }, function (error) {
-            console.log("Login failed" + error);
+            console.log("Login failed " + error);
+            $cordovaToast.show('Username &/ Password combination is incorrect', 'long', 'center')
+                .then(function (success) { }, function (error) { });
         });
     };
 

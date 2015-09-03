@@ -53,6 +53,18 @@ function usersSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
+    function getUserProfile() {
+        var defer = $q.defer();
+        $http.get(server + "/api/user/getProfile/")
+            .success(function (response) {
+                defer.resolve(response);
+            }).error(function (err) {
+                console.log(err);
+                defer.reject(err);
+            });
+        return defer.promise;
+    }
+
     function updateUserProfile(profile) {
         var defer = $q.defer();
         $http.post(server + "/api/user/updateProfile/", profile)
@@ -70,6 +82,7 @@ function usersSvc($http, $q, configSvc) {
         getUserDetail: getUserDetail,
         createUser: createUser,
         updateUserLocation: updateUserLocation,
+        getUserProfile: getUserProfile,
         updateUserProfile: updateUserProfile
     };
 }
