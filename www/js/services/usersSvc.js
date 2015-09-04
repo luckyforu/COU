@@ -19,7 +19,7 @@ function usersSvc($http, $q, configSvc) {
 
     function getUserDetail(userId) {
         var defer = $q.defer();
-        $http.get(server + "/api/user/" + userId)
+        $http.get(server + "/api/user/")
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (err) {
@@ -53,9 +53,21 @@ function usersSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
+    function getUserProfile2() {
+        var defer = $q.defer();
+        $http.get(server + "/api/hi/", null)
+            .success(function (response) {
+                defer.resolve(response);
+            }).error(function (err) {
+                console.log(err);
+                defer.reject(err);
+            });
+        return defer.promise;
+    }
+
     function getUserProfile() {
         var defer = $q.defer();
-        $http.get(server + "/api/user/getProfile/")
+        $http.get(server + "/api/user/getProfile/", null)
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (err) {
@@ -83,6 +95,7 @@ function usersSvc($http, $q, configSvc) {
         createUser: createUser,
         updateUserLocation: updateUserLocation,
         getUserProfile: getUserProfile,
-        updateUserProfile: updateUserProfile
+        updateUserProfile: updateUserProfile,
+        getUserProfile2: getUserProfile2
     };
 }

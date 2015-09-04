@@ -1,26 +1,21 @@
 <ion-view title="User Details" ng-controller="userDetailCtrl">
     <ion-content>
-        {{ user.profile.education }}
         <!--<img align="right" src={{user.image}} alt={{user.firstname}} />-->
         <div class="list">
-            <label class="item item-input">
-                <span class="input-label"> User Id </span>
-                <label>{{ myuser._id }}</label>
-            </label>
             <label class="item item-input">
                 <span class="input-label"> Name </span>
                 <label>{{ myuser.name }}</label>
             </label>
-            <label class="item item-input">
+            <!--<label class="item item-input">
                 <span class="input-label">Status</span>
                 <label>{{ myuser.status }}</label>
-            </label>
+            </label>-->
 
             <div class="item item-input">
                 <div class="input-label">BasicInfo</div>
                 <div>
                     <div>
-                        <span><label>Gender</label> Gender </span>
+                        <span>Gender</span>
                         <span><label> {{ myuser.profile.basicInfo.gender }} </label></span>
                     </div>
                     <div>
@@ -29,33 +24,62 @@
                     </div>
                     <div>
                         <span> Current City </span>
-                        <span> {{ myuser.profile.basicInfo.currentCity }} </span>
-                    </div>
-                    <div>
-                        <span> Languages Known </span>
-                        <span> {{ myuser.profile.basicInfo.languages }} </span>
+                        <span> {{ myuser.profile.basicInfo.city }} </span>
                     </div>
                 </div>
             </div>
 
+            <div class="item item-input">
+                <div class="input-label">Education</div>
+                <div>
+                    <div>
+                        <span>Graduation</span>
+                        <span><label> {{ myuser.profile.education.graduation }} </label></span>
+                    </div>
+                    <div>
+                        <span>Under Graduation</span>
+                        <span> {{ myuser.profile.education.underGraduation }} </span>
+                    </div>
+                    <div>
+                        <span>School</span>
+                        <span> {{ myuser.profile.education.school }} </span>
+                    </div>
+                </div>
+            </div>
 
+            <div class="item item-input">
+                <div class="input-label">Work</div>
+                <div>
+                    <div>
+                        <span>Previous</span>
+                        <span><label> {{ myuser.profile.work.currentEmployer }} </label></span>
+                    </div>
+                    <div>
+                        <span>Current</span>
+                        <span> {{ myuser.profile.work.previousEmployer }} </span>
+                    </div>
+                </div>
+            </div>
 
-            <label class="item item-input">
-                <span class="input-label">Education</span>
-                <label>{{ myuser.profile.education }}</label>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Work</span>
-                <label>{{ myuser.profile.work }}</label>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Relationship</span>
-                <label>{{ myuser.profile.relationship }}</label>
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Interests</span>
-                <label>{{ myuser.profile.interests }}</label>
-            </label>
+            <div class="item item-input">
+                <div class="input-label">Relationship</div>
+                <div>
+                    <div>
+                        <span>Status</span>
+                        <span><label> {{ myuser.profile.relationship.status }} </label></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-input">
+                <div class="input-label">Interests</div>
+                <div>
+                    <div>
+                        <span>Interests</span>
+                        <span><label> {{ myuser.profile.interests.interests }} </label></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>

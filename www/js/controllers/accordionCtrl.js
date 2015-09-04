@@ -1,5 +1,5 @@
 ﻿'use strict';
-angular.module('checkout').controller('accordionCtrl', ['$scope', '$state','usersSvc', accordionCtrl]);
+angular.module('checkout').controller('accordionCtrl', ['$scope', '$state', 'usersSvc', accordionCtrl]);
 
 function accordionCtrl($scope, $state, usersSvc) {
 
@@ -9,8 +9,13 @@ function accordionCtrl($scope, $state, usersSvc) {
     $scope.profile.work = {};
     $scope.profile.relationship = {};
     $scope.profile.interests = {};
+    $scope.profile.basicInfo.isExpanded = false;
+    $scope.profile.education.isExpanded = false;
+    $scope.profile.work.isExpanded = false;
+    $scope.profile.relationship.isExpanded = false;
+    $scope.profile.interests.isExpanded = false;
 
-    usersSvc.getUserProfile().then(function (response) {
+    usersSvc.getUserDetail().then(function (response) {
         $scope.profile = response.profile;
     }, function (error) {
         console.log("Not able to get profile " + error);
@@ -24,26 +29,12 @@ function accordionCtrl($scope, $state, usersSvc) {
         "Interests": 4
     });
 
-    $scope.profile.basicInfo.isExpanded = false;
-    $scope.profile.education.isExpanded = false;
-    $scope.profile.work.isExpanded = false;
-    $scope.profile.relationship.isExpanded = false;
-    $scope.profile.interests.isExpanded = false;
-
-    var emptyProfile = function () {
-        $scope.profile = {};
-        $scope.profile.basicInfo = {};
-        $scope.profile.education = {};
-        $scope.profile.work = {};
-        $scope.profile.relationship = {};
-        $scope.profile.interests = {};
-    };
-
-    emptyProfile();
-
-    
+    function collapseAll() {
+        $scope.profile.basicInfo.isExpanded = $scope.profile.education.isExpanded = $scope.profile.work.isExpanded = $scope.profile.relationship.isExpanded = $scope.profile.interests.isExpanded = false;
+    }
 
     $scope.expandGroup = function (group) {
+        collapseAll();
         switch (group) {
             case groupName.BasicInfo:
                 $scope.profile.basicInfo.isExpanded = !$scope.profile.basicInfo.isExpanded;
@@ -65,20 +56,16 @@ function accordionCtrl($scope, $state, usersSvc) {
         }
     };
 
-    $scope.save = function(profile) {
+    $scope.save = function (profile) {
         usersSvc.updateUserProfile(profile).then(function (response) {
             $scope.profile = response.profile;
         }, function (error) {
-            console.log("Updating profile failed" + error);
+            console.log("Updating profile failed " + error);
         });
     };
 
-    $scope.cancel = function() {
-        emptyProfile();
-        //$state.go("app.users");
+    $scope.cancel = function () {
+        $state.go("app.users");
     };
-
-    
-
 
 };

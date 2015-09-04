@@ -15,8 +15,8 @@ function registrationCtrl($scope, $state, $cordovaToast, $cordovaNetwork, regist
             console.log("Username available");
             registrationSvc.registerUser(registerUser).then(function (res) {
                 console.log("Registered successfully");
-                $cordovaToast.show('Registered successfully', 'short', 'bottom')
-                .then(function (success) { }, function (error) { });
+                //$cordovaToast.show('Registered successfully', 'short', 'bottom')
+                //.then(function (success) { }, function (error) { });
 
                 $state.go("app.users");
             }, function (error) {
