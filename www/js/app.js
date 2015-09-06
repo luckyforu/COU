@@ -7,24 +7,38 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
 
-.run(['$ionicPlatform', '$cordovaNetwork', '$state', function ($ionicPlatform, $cordovaNetwork, $state) {
+.run(['$ionicPlatform', '$cordovaNetwork', '$state', '$ionicPopup', function ($ionicPlatform, $cordovaNetwork, $state, $ionicPopup) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        if (window.cordova) {
+            //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
-        if (window.StatusBar) {
-            // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
-        }
+        //if (window.StatusBar) {
+        //    // org.apache.cordova.statusbar required
+        //    StatusBar.styleDefault();
+        //}
 
-        if ($cordovaNetwork.isOnline()) {
-            $state.go("app.users");
-        }
-        else {
+        if (!$cordovaNetwork.isOnline()) {
             $state.go("app.noInternet");
         }
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+            if ($state.current.name == "app.home") { // your check here
+                $ionicPopup.confirm({
+                    title: 'Exit',
+                    template: 'Are you sure you want to exit?'
+                }).then(function (res) {
+                    if (res) {
+                        ionic.Platform.exitApp();
+                    }
+                })
+            }
+            else {
+                navigator.app.backHistory();
+            }
+        }, 100);
+
     });
 
 

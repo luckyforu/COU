@@ -33,23 +33,47 @@ function accordionCtrl($scope, $state, usersSvc) {
         $scope.profile.basicInfo.isExpanded = $scope.profile.education.isExpanded = $scope.profile.work.isExpanded = $scope.profile.relationship.isExpanded = $scope.profile.interests.isExpanded = false;
     }
 
+    function collapseExceptBasicInfo() {
+        $scope.profile.education.isExpanded = $scope.profile.work.isExpanded = $scope.profile.relationship.isExpanded = $scope.profile.interests.isExpanded = false;
+    }
+
+    function collapseExceptEducation() {
+        $scope.profile.basicInfo.isExpanded = $scope.profile.work.isExpanded = $scope.profile.relationship.isExpanded = $scope.profile.interests.isExpanded = false;
+    }
+
+    function collapseExceptWork() {
+        $scope.profile.basicInfo.isExpanded = $scope.profile.education.isExpanded = $scope.profile.relationship.isExpanded = $scope.profile.interests.isExpanded = false;
+    }
+
+    function collapseExceptRelationship() {
+        $scope.profile.basicInfo.isExpanded = $scope.profile.education.isExpanded = $scope.profile.work.isExpanded = $scope.profile.interests.isExpanded = false;
+    }
+
+    function collapseExceptInterest() {
+        $scope.profile.basicInfo.isExpanded = $scope.profile.education.isExpanded = $scope.profile.work.isExpanded = $scope.profile.relationship.isExpanded = false;
+    }
+    
     $scope.expandGroup = function (group) {
-        collapseAll();
         switch (group) {
             case groupName.BasicInfo:
                 $scope.profile.basicInfo.isExpanded = !$scope.profile.basicInfo.isExpanded;
+                collapseExceptBasicInfo();
                 break;
             case groupName.Education:
                 $scope.profile.education.isExpanded = !$scope.profile.education.isExpanded;
+                collapseExceptEducation();
                 break;
             case groupName.Work:
                 $scope.profile.work.isExpanded = !$scope.profile.work.isExpanded;
+                collapseExceptWork();
                 break;
             case groupName.RelationShip:
                 $scope.profile.relationship.isExpanded = !$scope.profile.relationship.isExpanded;
+                collapseExceptRelationship();
                 break;
             case groupName.Interests:
                 $scope.profile.interests.isExpanded = !$scope.profile.interests.isExpanded;
+                collapseExceptInterest();
                 break;
             default:
                 break;

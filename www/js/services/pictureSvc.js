@@ -1,30 +1,20 @@
 ﻿'use strict';
-angular.module('checkout').factory('pictureSvc', ['$http', '$q', pictureSvc]);
+angular.module('checkout').factory('pictureSvc', ['$http', '$q', 'configSvc', pictureSvc]);
 
-function pictureSvc($http, $q) {
+function pictureSvc($http, $q, configSvc) {
+
+    var server = configSvc.appUrl;
 
     var reqObj = {
         headers: {
             'Content-Type': 'multipart/form-data'
-                    }
+        }
     }
 
     function saveImage(userId, image) {
         var defer = $q.defer();
         image = "http://localhost:8100/img/logo.png";
-        $http.post("http://localhost:1317/api/user/userId/image",  image, reqObj)
-            .success(function (response) {
-                defer.resolve(response);
-            }).error(function (e) {
-                console.log(e);
-                defer.reject();
-            });
-        return defer.promise;
-    }
-
-    function createUser(user) {
-        var defer = $q.defer();
-        $http.post("http://localhost:1317/api/user/", user)
+        $http.post(server + "/api/user/userId/image", image, reqObj)
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (e) {
@@ -39,20 +29,19 @@ function pictureSvc($http, $q) {
         var fd = new FormData();
         //Take the first selected file
         fd.append("file", files[0]);
-        //var uploadUrl = "http://localhost:1337/api/user/userId/image";
-        var uploadUrl = "http://localhost:1337/api/user/userId/imagenew";
+        var uploadUrl = server + "/api/user/userId/imagenew";
 
         $http.post(uploadUrl, fd, {
-//            withCredentials: true,
-            headers: {'Content-Type': undefined },
+            //            withCredentials: true,
+            headers: { 'Content-Type': undefined },
             transformRequest: angular.identity
         })
         .success(function (response) {
-                console.log("successssss");
-                defer.resolve(response);
+            console.log("successssss");
+            defer.resolve(response);
         }).error(function (e) {
-                console.log("errroorrrr--" + e);
-                defer.reject();
+            console.log("errroorrrr--" + e);
+            defer.reject();
         });
 
     };
@@ -68,7 +57,7 @@ function pictureSvc($http, $q) {
         //    'Content-Type': 'image/png'
         //}
         //var uploadUrl = "http://localhost:1337/api/user/userId/getimage";
-        $http.get("http://localhost:1337/api/user/userId/getimage", imgObj)
+        $http.get(server + "/api/user/userId/getimage", imgObj)
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (e) {
@@ -78,10 +67,22 @@ function pictureSvc($http, $q) {
         return defer.promise;
     };
 
+    function createUser(user) {
+        var defer = $q.defer();
+        $http.post(server + "/api/user/", user)
+            .success(function (response) {
+                defer.resolve(response);
+            }).error(function (e) {
+                console.log(e);
+                defer.reject();
+            });
+        return defer.promise;
+    }
+
     return {
         saveImage: saveImage,
         createUser: createUser,
         uploadFile: uploadFile,
         getPicture: getPicture
-};
+    };
 }

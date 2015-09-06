@@ -14,7 +14,7 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
             encodingType: Camera.EncodingType.JPEG,
             targetWidth: 300,
             targetHeight: 300,
-            //popOverOptions: CameraPopoverOptions,
+            //popOverOptions: CameraPopoverOptionsselectPicture
             saveToPhotoAlbum: false
         };
         $cordovaCamera.getPicture(options).then(function (imageData) {
