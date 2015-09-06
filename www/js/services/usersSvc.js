@@ -19,7 +19,19 @@ function usersSvc($http, $q, configSvc) {
 
     function getUserDetail(userId) {
         var defer = $q.defer();
-        $http.get(server + "/api/user/")
+        $http.get(server + "/api/user/" + userId)
+            .success(function (response) {
+                defer.resolve(response);
+            }).error(function (err) {
+                console.log(err);
+                defer.reject(err);
+            });
+        return defer.promise;
+    }
+
+    function getMyDetails() {
+        var defer = $q.defer();
+        $http.get(server + "/api/user/myDetails/")
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (err) {
@@ -53,18 +65,7 @@ function usersSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
-    function getUserProfile2() {
-        var defer = $q.defer();
-        $http.get(server + "/api/hi/", null)
-            .success(function (response) {
-                defer.resolve(response);
-            }).error(function (err) {
-                console.log(err);
-                defer.reject(err);
-            });
-        return defer.promise;
-    }
-
+    
     function getUserProfile() {
         var defer = $q.defer();
         $http.get(server + "/api/user/getProfile/", null)
@@ -92,10 +93,10 @@ function usersSvc($http, $q, configSvc) {
     return {
         getUsers: getUsers,
         getUserDetail: getUserDetail,
+        getMyDetails: getMyDetails,
         createUser: createUser,
         updateUserLocation: updateUserLocation,
         getUserProfile: getUserProfile,
-        updateUserProfile: updateUserProfile,
-        getUserProfile2: getUserProfile2
+        updateUserProfile: updateUserProfile
     };
 }

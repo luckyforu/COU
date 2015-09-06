@@ -1,4 +1,7 @@
 ﻿<ion-view title="Accordion" ng-controller="accordionCtrl">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
     <ion-content class="has-header">
         <ion-list>
             <div>
@@ -11,7 +14,7 @@
                 <ion-item class="item-accordion" ng-show="profile.basicInfo.isExpanded">
                     <ion-item>
                         <input type="text" name="city" placeholder="Name" ng-model="profile.basicInfo.name" />
-                    </ion-item> 
+                    </ion-item>
                     <ion-item>
                         <input type="text" name="city" placeholder="Dob" ng-model="profile.basicInfo.dob" />
                     </ion-item>
@@ -19,72 +22,84 @@
                         <input type="text" name="city" placeholder="City" ng-model="profile.basicInfo.city" />
                     </ion-item>
                     <ion-item>
-                            <input type="text" name="gender" placeholder="Gender" ng-model="profile.basicInfo.gender" />
-                        </ion-item>
+                        <input type="text" name="gender" placeholder="Gender" ng-model="profile.basicInfo.gender" />
                     </ion-item>
+                </ion-item>
 
-                    <ion-item class="item-stable" ng-click="expandGroup(1)" ng-class="{active: profile.education.isExpanded}">
-                        <i class="icon" ng-class="profile.education.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
-                        &nbsp;
-                        Education
-                    </ion-item>
+                <ion-item class="item-stable" ng-click="expandGroup(1)" ng-class="{active: profile.education.isExpanded}">
+                    <i class="icon" ng-class="profile.education.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Education
+                </ion-item>
 
-                    <ion-item class="item-accordion" ng-show="profile.education.isExpanded">
-                        <ion-item>
-                            <input type="text" name="school" placeholder="School" ng-model="profile.education.school" />
-                        </ion-item>
-                        <ion-item>
-                            <input type="text" name="underGraduation" placeholder="UnderGraduation" ng-model="profile.education.underGraduation" />
-                        </ion-item>
-                        <ion-item>
-                            <input type="text" name="Graduation" placeholder="Graduation" ng-model="profile.education.graduation" />
-                        </ion-item>
-                    </ion-item>
-                    <ion-item class="item-stable" ng-click="expandGroup(2)" ng-class="{active: profile.work.isExpanded}">
-                        <i class="icon" ng-class="profile.work.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
-                        &nbsp;
-                        Work
-                    </ion-item>
-
-                    <ion-item class="item-accordion" ng-show="profile.work.isExpanded">
-                        <ion-item>
-                            <input type="text" name="previousEmployer" placeholder="Previous Employer" ng-model="profile.work.previousEmployer" />
-                        </ion-item>
-                        <ion-item>
-                            <input type="text" name="currentEmployer" placeholder="Current Employer" ng-model="profile.work.currentEmployer" />
-                        </ion-item>
-                    </ion-item>
-                    <ion-item class="item-stable" ng-click="expandGroup(3)" ng-class="{active: profile.relationship.isExpanded}">
-                        <i class="icon" ng-class="profile.relationship.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
-                        &nbsp;
-                        Relationship
-                    </ion-item>
-
-                    <ion-item class="item-accordion" ng-show="profile.relationship.isExpanded">
-                        <ion-item>
-                            <input type="text" name="relationship" placeholder="Relationship Status" ng-model="profile.relationship.status" />
-                        </ion-item>
-                    </ion-item>
-
-                    <ion-item class="item-stable" ng-click="expandGroup(4)" ng-class="{active: profile.interests.isExpanded}">
-                        <i class="icon" ng-class="profile.interests.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
-                        &nbsp;
-                        Interests
-                    </ion-item>
-
-                    <ion-item class="item-accordion" ng-show="profile.interests.isExpanded">
-                        <ion-item>
-                            <input type="text" name="interests" placeholder="Interests" ng-model="profile.interests.interests" />
-                        </ion-item>
+                <ion-item class="item-accordion" ng-show="profile.education.isExpanded">
+                    <ion-item>
+                        <input type="text" name="school" placeholder="School" ng-model="profile.education.school" />
                     </ion-item>
                     <ion-item>
-                        <span>
-                            <button class="button button-dark" ng-click="save(profile)">Save</button>
-                        </span>
-                        <span>
-                            <button class="button button-dark" ng-click="cancel()">Cancel</button>
-                        </span>
+                        <input type="text" name="underGraduation" placeholder="UnderGraduation" ng-model="profile.education.underGraduation" />
                     </ion-item>
+                    <ion-item>
+                        <input type="text" name="Graduation" placeholder="Graduation" ng-model="profile.education.graduation" />
+                    </ion-item>
+                </ion-item>
+                <ion-item class="item-stable" ng-click="expandGroup(2)" ng-class="{active: profile.work.isExpanded}">
+                    <i class="icon" ng-class="profile.work.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Work
+                </ion-item>
+
+                <ion-item class="item-accordion" ng-show="profile.work.isExpanded">
+                    <ion-item>
+                        <input type="text" name="previousEmployer" placeholder="Previous Employer" ng-model="profile.work.previousEmployer" />
+                    </ion-item>
+                    <ion-item>
+                        <input type="text" name="currentEmployer" placeholder="Current Employer" ng-model="profile.work.currentEmployer" />
+                    </ion-item>
+                </ion-item>
+                <ion-item class="item-stable" ng-click="expandGroup(3)" ng-class="{active: profile.relationship.isExpanded}">
+                    <i class="icon" ng-class="profile.relationship.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Relationship
+                </ion-item>
+
+                <ion-item class="item-accordion" ng-show="profile.relationship.isExpanded">
+                    <ion-item>
+                        <input type="text" name="relationship" placeholder="Relationship Status" ng-model="profile.relationship.status" />
+                    </ion-item>
+                </ion-item>
+
+                <ion-item class="item-stable" ng-click="expandGroup(4)" ng-class="{active: profile.interests.isExpanded}">
+                    <i class="icon" ng-class="profile.interests.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Interests
+                </ion-item>
+
+                <ion-item class="item-accordion" ng-show="profile.interests.isExpanded">
+                    <ion-item>
+                        <input type="text" name="interests" placeholder="Interests" ng-model="profile.interests.interests" />
+                    </ion-item>
+                </ion-item>
+
+                <ion-item class="item-stable" ng-click="expandGroup(5)" ng-class="{active: profile.status.isExpanded}">
+                    <i class="icon" ng-class="profile.status.isExpanded ? 'ion-minus' : 'ion-plus'"></i>
+                    &nbsp;
+                    Status
+                </ion-item>
+
+                <ion-item class="item-accordion" ng-show="profile.status.isExpanded">
+                    <ion-item>
+                        <input type="text" name="status" placeholder="Your status" ng-model="profile.status.status" />
+                    </ion-item>
+                </ion-item>
+                <ion-item>
+                    <span>
+                        <button class="button button-dark" ng-click="save(profile)">Save</button>
+                    </span>
+                    <span>
+                        <button class="button button-dark" ng-click="cancel()">Cancel</button>
+                    </span>
+                </ion-item>
 
             </div>
         </ion-list>

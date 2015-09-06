@@ -39,6 +39,7 @@ function registrationSvc($http, $q, authToken, configSvc) {
         $http.post(server + "/api/login/", user)
             .success(function (response) {
                 authToken.setToken(response.token);
+                authToken.setUserId(response._id);
                 defer.resolve(response);
             }).error(function (err) {
                 console.log(err);

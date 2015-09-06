@@ -20,7 +20,7 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
         $cordovaCamera.getPicture(options).then(function (imageData) {
             $scope.imgSrc = "data:image/jpeg;base64," + imageData;
         }, function (err) {
-            alert("Error occured while taking picture-" + err);
+            alert("Error occured while taking picture - " + err);
         });
     };
 
@@ -39,7 +39,7 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
         $cordovaCamera.getPicture(options).then(function (imageUri) {
             $scope.imgSrc = imageUri;
         }, function (err) {
-            alert("Error occured while selecting picture-" + err);
+            alert("Error occured while selecting picture - " + err);
         });
     };
 
