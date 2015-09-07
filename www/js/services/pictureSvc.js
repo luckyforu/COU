@@ -79,10 +79,37 @@ function pictureSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
+    function uploadDisplayPic(imageData) {
+        var defer = $q.defer();
+        $http.post(server + "/api/picture/postisplayPic", imageData)
+            .success(function (response) {
+                defer.resolve(response);
+            }).error(function (e) {
+                console.log(e);
+                defer.reject();
+            });
+        return defer.promise;
+    }
+
+    function getDisplayPic(user) {
+        var defer = $q.defer();
+        $http.get(server + "/api/picture/getDisplayPic", user)
+            .success(function (response) {
+                defer.resolve(response);
+            }).error(function (e) {
+                console.log(e);
+                defer.reject();
+            });
+        return defer.promise;
+    }
+
+
     return {
         saveImage: saveImage,
         createUser: createUser,
         uploadFile: uploadFile,
-        getPicture: getPicture
+        getPicture: getPicture,
+        uploadDisplayPic: uploadDisplayPic,
+        getDisplayPic: getDisplayPic
     };
 }

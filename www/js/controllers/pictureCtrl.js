@@ -18,7 +18,12 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
             saveToPhotoAlbum: false
         };
         $cordovaCamera.getPicture(options).then(function (imageData) {
-            $scope.imgSrc = "data:image/jpeg;base64," + imageData;
+            pictureSvc.uploadDisplayPic(imageData).then(function (response) {
+                $scope.imgSrc = "data:image/jpeg;base64," + response.imageData;
+                console.log("image Saved");
+            }, function (error) {
+                console.log("image error" + );
+            });
         }, function (err) {
             alert("Error occured while taking picture - " + err);
         });
