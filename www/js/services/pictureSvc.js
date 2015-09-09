@@ -79,9 +79,9 @@ function pictureSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
-    function uploadDisplayPic(imageData) {
+    function uploadDisplayPic(image) {
         var defer = $q.defer();
-        $http.post(server + "/api/picture/postisplayPic", imageData)
+        $http.post(server + "/api/picture/postisplayPic", image)
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (e) {
@@ -91,9 +91,9 @@ function pictureSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
-    function getDisplayPic(user) {
+    function getDisplayPic() {
         var defer = $q.defer();
-        $http.get(server + "/api/picture/getDisplayPic", user)
+        $http.get(server + "/api/picture/getDisplayPic")
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (e) {

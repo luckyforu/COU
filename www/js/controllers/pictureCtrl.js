@@ -3,7 +3,7 @@ angular.module('checkout').controller('pictureCtrl', ['$scope', '$cordovaCamera'
 
 function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
 
-    $scope.imgSrc = "../img/logo.png";
+    $scope.imgSrc = "./img/logo.png";
 
     $scope.takePicture = function () {
         var options = {
@@ -18,11 +18,13 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
             saveToPhotoAlbum: false
         };
         $cordovaCamera.getPicture(options).then(function (imageData) {
-            pictureSvc.uploadDisplayPic(imageData).then(function (response) {
+            var image = {};
+            image.data = imageData;
+            pictureSvc.uploadDisplayPic(image).then(function (response) {
                 $scope.imgSrc = "data:image/jpeg;base64," + response.imageData;
                 console.log("image Saved");
             }, function (error) {
-                console.log("image error" + );
+                console.log("image error " + error);
             });
         }, function (err) {
             alert("Error occured while taking picture - " + err);
@@ -63,14 +65,16 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
         });
     };
 
-    $scope.getPicture = function () {
-        pictureSvc.getPicture().then(function (response) {
+    var getPicture = function () {
+        pictureSvc.getDisplayPic().then(function (response) {
             console.log("success");
-            $scope.imageFromDb = response;
+            $scope.imgSrc = response.imageData;
         },
         function (err) {
             console.log("Error occured while selecting picture-" + err);
         });
     };
+
+    getPicture();
 
 }

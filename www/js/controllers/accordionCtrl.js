@@ -1,7 +1,7 @@
 ﻿'use strict';
-angular.module('checkout').controller('accordionCtrl', ['$scope', '$state', 'usersSvc', accordionCtrl]);
+angular.module('checkout').controller('accordionCtrl', ['$scope', '$state', '$cordovaToast', 'usersSvc', accordionCtrl]);
 
-function accordionCtrl($scope, $state, usersSvc) {
+function accordionCtrl($scope, $state, $cordovaToast, usersSvc) {
 
     function defaultProfile() {
         $scope.profile = {};
@@ -26,6 +26,8 @@ function accordionCtrl($scope, $state, usersSvc) {
         }
         else {
             defaultProfile();
+            $cordovaToast.show('Sorry, we were not able to get your profile details', 'long', 'center')
+                .then(function (success) { }, function (error) { });
         }
     }, function (error) {
         console.log("Not able to get profile " + error);
@@ -133,6 +135,8 @@ function accordionCtrl($scope, $state, usersSvc) {
             $scope.profile = response.profile;
         }, function (error) {
             console.log("Updating profile failed " + error);
+            $cordovaToast.show("Sorry, we could not updated profile", 'long', 'center')
+                .then(function (success) { }, function (error) { });
         });
     };
 
