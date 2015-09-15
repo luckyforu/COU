@@ -133,6 +133,8 @@ function accordionCtrl($scope, $state, $cordovaToast, usersSvc) {
     $scope.save = function (profile) {
         usersSvc.updateUserProfile(profile).then(function (response) {
             $scope.profile = response.profile;
+            $cordovaToast.show("Profile updated", 'long', 'center')
+                .then(function (success) { }, function (error) { });
         }, function (error) {
             console.log("Updating profile failed " + error);
             $cordovaToast.show("Sorry, we could not updated profile", 'long', 'center')
