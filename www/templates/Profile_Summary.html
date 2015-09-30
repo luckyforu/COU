@@ -1,0 +1,21 @@
+<ion-view view-title="Profile" ng-controller="userDetailCtrl">
+    <ion-content>
+        <div class="hero slide-up" style="background-image: url('img/Hyd.jpg');">
+        </div>
+        <div style="text-align:center">{{userName}}</div>
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a class="tab-item" ng-click="viewEducation()">
+                <i class="icon ion-university"></i> Education
+            </a>
+            <a class="tab-item" ng-click="viewWork()">
+                <i class="icon ion-briefcase"></i> Work place
+            </a>
+            <a class="tab-item" ng-click="viewRelationship()">
+                <i class="icon ion-heart"></i> Relationship
+            </a>
+            <a class="tab-item" ng-click="viewInterests()">
+                <i class="icon ion-social-dribbble-outline"></i> Interests
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

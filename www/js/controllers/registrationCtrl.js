@@ -36,19 +36,19 @@ function registrationCtrl($scope, $state, $cordovaToast, $cordovaNetwork, regist
         $scope.modal.hide();
     };
 
-    $scope.login = function (user) {
-        $scope.user = {};
-        registrationSvc.login(user).then(function (response) {
-            console.log("Logged in successfully");
-            $scope.user.Id = response._id;
-            //userContextSvc.setUserInfo(response);
+    //$scope.login = function (user) {
+    //    $scope.user = {};
+    //    registrationSvc.login(user).then(function (response) {
+    //        console.log("Logged in successfully");
+    //        $scope.user.Id = response._id;
+    //        //userContextSvc.setUserInfo(response);
 
-            $state.go("app.users", { user: response });
-        }, function (error) {
-            console.log("Login failed " + error);
-            $cordovaToast.show('Username &/ Password combination is incorrect', 'long', 'center')
-                .then(function (success) { }, function (error) { });
-        });
-    };
+    //        $state.go("app.users", { user: response });
+    //    }, function (error) {
+    //        console.log("Login failed " + error);
+    //        $cordovaToast.show('Username &/ Password combination is incorrect', 'long', 'center')
+    //            .then(function (success) { }, function (error) { });
+    //    });
+    //};
 
 }

@@ -1,66 +1,27 @@
-<ion-view title="BasicInfo">
-    <ion-nav-buttons side="left">
+<ion-view title="Education" ng-controller="userProfileCtrl">
+    <!--<ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>-->
     <ion-content class="has-header">
-        <h3>Profile - Education</h3>
-        
         <form>
             <div class="list">
                 <label class="item item-input">
                     <span class="input-label">School</span>
-                    <input type="text" ng-model="education.school">
+                    <span class="ïnput-label">{{userDetails.profile.education.school}}</span>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">UnderGraduation</span>
-                    <input type="text" ng-model="education.underGraduation">
+                    <span class="ïnput-label">{{userDetails.profile.education.underGraduation}}</span>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">Graduation</span>
-                    <input type="text" ng-model="education.graduation">
+                    <span class="ïnput-label">{{userDetails.profile.education.graduation}}</span>
                 </label>
                 <label class="item item-input">
                     <span class="input-label">PostGraduation</span>
-                    <input type="text" ng-model="education.postGraduation">
-                </label>
-                <label class="item">
-                    <button class="button button-block button-positive" type="submit">Save Changes</button>
+                    <span class="ïnput-label">{{userDetails.profile.education.postGraduation}}</span>
                 </label>
             </div>
         </form>
     </ion-content>
 </ion-view>
-
-<!--<div class="modal">
-    <ion-header-bar>
-        <h1 class="title">Education</h1>
-        <div class="buttons">
-            <button class="button button-clear" ng-click="closeLogin()">Close</button>
-        </div>
-    </ion-header-bar>
-    <ion-content>
-        <form ng-submit="doLogin()">
-            <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">School</span>
-                    <input type="text" ng-model="loginData.username">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">UnderGraduation</span>
-                    <input type="text" ng-model="loginData.password">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Graduation</span>
-                    <input type="text" ng-model="loginData.password">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">PostGraduation</span>
-                    <input type="password" ng-model="loginData.password">
-                </label>
-                <label class="item">
-                    <button class="button button-block button-positive" type="submit">Save Changes</button>
-                </label>
-            </div>
-        </form>
-    </ion-content>
-</div>-->

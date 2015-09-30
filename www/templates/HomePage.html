@@ -1,21 +1,31 @@
-﻿<ion-view title="CheckOut" id="titleHomePage" ng-controller="homePageCtrl">
-    
-    <ion-content class="home">
-        <div class="button-bar">
-            <a class="button button-positive" ng-click="register()">Register</a>
+﻿<ion-view ng-controller="homePageCtrl" hide-nav-bar="true">
+    <ion-content style="background: url(./img/Home.jpg) center; background-size: cover;">
+        <div class="hero no-header flat">
+            <div class="content hero slide-up">
+                <!--<div class="app-icon"></div>-->
+                <h2>CheckOut</h2>
+            </div>
         </div>
-        <div class="button-bar">
-            <a class="button button-positive" ng-click="login()">Login</a>
+        <div class="list">
+            <ion-md-input placeholder="Username" highlight-color="balanced" ng-model="loginData.username" type="text"></ion-md-input>
+            <ion-md-input placeholder="Password" highlight-color="energized" ng-model="loginData.password" type="password"></ion-md-input>
         </div>
-        <!--<span>
-            <button class="button button-positive" ng-click="register()">
-                Register
-            </button>
-        </span>
-        <span>
-            <button class="button button-positive" ng-click="login()">
-                Login
-            </button>
-        </span>-->
+        <!--<div class="padding">
+            <button class="button button-full button-assertive ink" ng-click="login(loginData)">Login</button>
+        </div>
+        <div class="padding">
+            <button class="button button-full button-assertive ink" ng-click="goRegister()">Sign Up</button>
+        </div>-->
+
+        <label class="item">
+            <button class="button button-block button-positive" ng-click="login(loginData)">Login</button>
+        </label>
+        <label class="item">
+            <button class="button button-block button-positive" ng-click="goRegister()">SIGN UP</button>
+        </label>
+        <!--<div class="button-bar social-login">
+            <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
+            <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+        </div>-->
     </ion-content>
 </ion-view>

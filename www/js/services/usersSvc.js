@@ -89,7 +89,7 @@ function usersSvc($http, $q, configSvc) {
             });
         return defer.promise;
     }
-    
+
     return {
         getUsers: getUsers,
         getUserDetail: getUserDetail,

@@ -1,8 +1,28 @@
-<ion-view title="Relationship">
-    <ion-nav-buttons side="left">
+<ion-view title="Interests" ng-controller="userProfileCtrl">
+    <!--<ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>-->
     <ion-content class="has-header">
-        <h1>Profile - Edit your interests here</h1>
+        <form>
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Games</span>
+                    <span class="ïnput-label">{{userDetails.profile.interests.interests}}</span>
+                </label>
+                Dummy
+                <label class="item item-input">
+                    <span class="input-label">Music</span>
+                    <span class="ïnput-label">A. R Rahman</span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Books</span>
+                    <span class="ïnput-label">I dont ready any</span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Movies</span>
+                    <span class="ïnput-label">The Wolf of Wall street</span>
+                </label>
+            </div>
+        </form>
     </ion-content>
 </ion-view>

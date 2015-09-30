@@ -5,7 +5,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
+angular.module('checkout', ['ngCordova', 'ionic', 'ionic-material', 'ionMdInput', 'checkout.controllers'])
 
 .run(['$ionicPlatform', '$cordovaNetwork', '$state', '$ionicPopup', function ($ionicPlatform, $cordovaNetwork, $state, $ionicPopup) {
     $ionicPlatform.ready(function () {
@@ -152,7 +152,7 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
           url: "/users/:userId",
           views: {
               'menuContent': {
-                  templateUrl: "templates/UserDetail.html",
+                  templateUrl: "templates/Profile_Summary.html",
               }
           }
       })
@@ -166,7 +166,7 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
           }
       })
 
-      .state('app.editProfile.education', {
+      .state('app.education', {
           url: "/education",
           views: {
               'menuContent': {
@@ -175,7 +175,7 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
           }
       })
 
-      .state('app.editProfile.work', {
+      .state('app.work', {
           url: "/work",
           views: {
               'menuContent': {
@@ -184,7 +184,7 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
           }
       })
 
-      .state('app.editProfile.relationship', {
+      .state('app.relationship', {
           url: "/relationship",
           views: {
               'menuContent': {
@@ -192,6 +192,15 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
               }
           }
       })
+
+         .state('app.interests', {
+             url: "/interests",
+             views: {
+                 'menuContent': {
+                     templateUrl: "templates/Profile_Interests.html",
+                 }
+             }
+         })
 
         .state('app.noInternet', {
             url: "/noInternet",
@@ -202,7 +211,24 @@ angular.module('checkout', ['ngCordova', 'ionic', 'checkout.controllers'])
             }
         })
 
+    .state('app.IMprofile', {
+        url: '/improfile',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/ionicMaterialProfile.html'
+            },
+            'fabContent': {
+                template: '<button id="fab-profile" class="button button-fab button-fab-bottom-right button-energized-900"><i class="icon ion-plus"></i></button>',
+                controller: function ($timeout) {
+                    /*$timeout(function () {
+                        document.getElementById('fab-profile').classList.toggle('on');
+                    }, 800);*/
+                }
+            }
+        }
+    })
     ;
+
 
 
     // if none of the above states are matched, use this as the fallback

@@ -1,15 +1,24 @@
-<ion-view title="Users" ng-controller="usersCtrl">
+<ion-view view-title="Users" ng-controller="usersCtrl">
     <ion-nav-buttons side="left">
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
     </ion-nav-buttons>
-    <ion-content class="has-header">
-        <div class="list" style="color:#000000">
-            <a class="item item-avatar item-icon-right item-divider" style="color:black" ng-repeat="user in users" href="#/app/users/{{user._id}}">
-                <img src="./img/NK.JPG" />
-                <h2>{{user.profile.basicInfo.name}}</h2>
-                <p>{{user.profile.status.status}}</p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
-            </a>
+    <ion-content>
+        <div class="content has-header">
+            <div class="list animate-fade-slide-in-right">
+                <a href="#/app/users/{{user._id}}" class="item item-avatar item-icon-right in" ng-repeat="user in users">
+                    <img src="img/NK.JPG"/>
+                    <h2>{{user.profile.basicInfo.name}}</h2>
+                    <p>{{user.profile.status.status}}</p>
+                    <i class="icon ion-chatbubble muted"></i>
+                </a>
+                <a href="#/app/profile" class="item item-avatar item-icon-right">
+                    <img src="img/jon-snow.jpg">
+                    <h2>Jon Snow</h2>
+                    <p>Da illest illegitimate</p>
+                    <i class="icon ion-chatbubble muted"></i>
+                </a>
+            </div>
         </div>
     </ion-content>
+    
 </ion-view>
