@@ -18,6 +18,5 @@ function usersSvc($http, $q, configSvc) {
     return {
         getUserDetails: getUserDetails,
         setUserDetails: setUserDetails
-
     };
 }

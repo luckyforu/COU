@@ -3,11 +3,13 @@ angular.module('checkout').controller('homePageCtrl', ['$scope', '$state', '$tim
 
 function homePageCtrl($scope, $state, $timeout, registrationSvc, ionicMaterialInk, ionicMaterialMotion) {
 
-    ionic.Platform.ready(function () {
-        StatusBar.hide();
-    });
+    //ionic.Platform.ready(function () {
+    //    StatusBar.hide();
+    //});
 
     $scope.loginData = {};
+    $scope.loginData.username = "";
+    $scope.loginData.password = "";
     $timeout(function () {
         ionicMaterialMotion.slideUp({
             selector: '.slide-up'

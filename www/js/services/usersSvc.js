@@ -31,7 +31,7 @@ function usersSvc($http, $q, configSvc) {
 
     function getMyDetails() {
         var defer = $q.defer();
-        $http.get(server + "/api/user/myDetails/")
+        $http.get(server + "/api/myDetails/")
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (err) {
