@@ -11,10 +11,9 @@ function pictureSvc($http, $q, configSvc) {
         }
     }
 
-    function saveImage(userId, image) {
+    function getDisplayPic() {
         var defer = $q.defer();
-        image = "http://localhost:8100/img/logo.png";
-        $http.post(server + "/api/user/userId/image", image, reqObj)
+        $http.get(server + "/api/getUserPic")
             .success(function (response) {
                 defer.resolve(response);
             }).error(function (e) {
@@ -24,15 +23,15 @@ function pictureSvc($http, $q, configSvc) {
         return defer.promise;
     }
 
-    function uploadFile(files) {
+    function uploadDisplayPic(files) {
         var defer = $q.defer();
         var fd = new FormData();
         //Take the first selected file
         fd.append("file", files[0]);
-        var uploadUrl = server + "/api/user/userId/imagenew";
+        var uploadUrl = server + "/api/postUserPic";
 
         $http.post(uploadUrl, fd, {
-            //            withCredentials: true,
+            //headers: { 'Content-Type': files[0].type },
             headers: { 'Content-Type': undefined },
             transformRequest: angular.identity
         })
@@ -40,75 +39,13 @@ function pictureSvc($http, $q, configSvc) {
             console.log("successssss");
             defer.resolve(response);
         }).error(function (e) {
-            console.log("errroorrrr--" + e);
+            console.log("errroorrrr-- " + e);
             defer.reject();
         });
-
-    };
-
-    function getPicture() {
-        var defer = $q.defer();
-        var imgObj = {
-            headers: {
-                'Content-Type': 'image/png'
-            }
-        }
-        //var config = {
-        //    'Content-Type': 'image/png'
-        //}
-        //var uploadUrl = "http://localhost:1337/api/user/userId/getimage";
-        $http.get(server + "/api/user/userId/getimage", imgObj)
-            .success(function (response) {
-                defer.resolve(response);
-            }).error(function (e) {
-                console.log(e);
-                defer.reject();
-            });
         return defer.promise;
     };
-
-    function createUser(user) {
-        var defer = $q.defer();
-        $http.post(server + "/api/user/", user)
-            .success(function (response) {
-                defer.resolve(response);
-            }).error(function (e) {
-                console.log(e);
-                defer.reject();
-            });
-        return defer.promise;
-    }
-
-    function uploadDisplayPic(image) {
-        var defer = $q.defer();
-        $http.post(server + "/api/picture/postisplayPic", image)
-            .success(function (response) {
-                defer.resolve(response);
-            }).error(function (e) {
-                console.log(e);
-                defer.reject();
-            });
-        return defer.promise;
-    }
-
-    function getDisplayPic() {
-        var defer = $q.defer();
-        $http.get(server + "/api/picture/getDisplayPic")
-            .success(function (response) {
-                defer.resolve(response);
-            }).error(function (e) {
-                console.log(e);
-                defer.reject();
-            });
-        return defer.promise;
-    }
-
 
     return {
-        saveImage: saveImage,
-        createUser: createUser,
-        uploadFile: uploadFile,
-        getPicture: getPicture,
         uploadDisplayPic: uploadDisplayPic,
         getDisplayPic: getDisplayPic
     };

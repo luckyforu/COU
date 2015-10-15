@@ -3,7 +3,7 @@ angular.module('checkout').controller('pictureCtrl', ['$scope', '$cordovaCamera'
 
 function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
 
-    $scope.imgSrc = "./img/logo.png";
+    //$scope.imgSrc = "./img/logo.png";
 
     $scope.takePicture = function () {
         var options = {
@@ -44,7 +44,13 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
             saveToPhotoAlbum: false
         };
         $cordovaCamera.getPicture(options).then(function (imageUri) {
-            $scope.imgSrc = imageUri;
+            pictureSvc.uploadDisplayPic(imageUri).then(function (response) {
+                console.log("success");
+            },
+            function (err) {
+                console.log("Error occured while uploading picture " + err);
+            });
+            //$scope.imgSrc = imageUri;
         }, function (err) {
             alert("Error occured while selecting picture - " + err);
         });
@@ -59,19 +65,22 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
         });
     };
 
-    $scope.uploadFile = function(files) {
-        pictureSvc.uploadFile(files).then(function (response) {
+    $scope.uploadFile = function (files) {
+        pictureSvc.uploadDisplayPic(files).then(function (response) {
             console.log("success");
+        },
+        function (err) {
+            console.log("Error occured while uploading picture " + err);
         });
     };
 
     var getPicture = function () {
         pictureSvc.getDisplayPic().then(function (response) {
             console.log("success");
-            $scope.imgSrc = response.imageData;
+            $scope.imgSrc = response;
         },
         function (err) {
-            console.log("Error occured while selecting picture-" + err);
+            console.log("Error occured while getting picture " + err);
         });
     };
 
