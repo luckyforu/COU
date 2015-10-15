@@ -1,9 +1,16 @@
 ﻿'use strict';
-angular.module('checkout').controller('pictureCtrl', ['$scope', '$cordovaCamera', 'pictureSvc', pictureCtrl]);
+angular.module('checkout').controller('pictureCtrl', ['$scope', '$cordovaCamera', '$cordovaFileTransfer', 'configSvc', 'pictureSvc', pictureCtrl]);
 
-function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
+function pictureCtrl($scope, $cordovaCamera, $cordovaFileTransfer, configSvc, pictureSvc) {
 
-    //$scope.imgSrc = "./img/logo.png";
+    var server = configSvc.appUrl;
+
+    var uploadOptions = {
+        fileKey: "avatar",
+        fileName: "image.jpg",
+        chunkedMode: false,
+        mimeType: "image/jpg"
+    };
 
     $scope.takePicture = function () {
         var options = {
@@ -43,25 +50,15 @@ function pictureCtrl($scope, $cordovaCamera, pictureSvc) {
             popOverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false
         };
-        $cordovaCamera.getPicture(options).then(function (imageUri) {
-            pictureSvc.uploadDisplayPic(imageUri).then(function (response) {
-                console.log("success");
-            },
-            function (err) {
-                console.log("Error occured while uploading picture " + err);
-            });
-            //$scope.imgSrc = imageUri;
-        }, function (err) {
-            alert("Error occured while selecting picture - " + err);
-        });
-    };
 
-    $scope.savePicture = function () {
-        var userId = "54a3db0c465f643c373ae456";
-        //upload($scope.imgSrc);
-        pictureSvc.saveImage(userId, $scope.imgSrc).then(function (response) {
-            $scope.imgSrc = response;
-            console.log("success");
+        $cordovaCamera.getPicture(options).then(function (imageUri) {
+            $cordovaFileTransfer.upload(server + "/api/postUserPic", "../../img/ionic.png", uploadOptions).then(function (result) {
+                console.log("SUCCESS: " + JSON.stringify(result.response));
+            }, function (err) {
+                console.log("ERROR: " + JSON.stringify(err));
+            }, function (progress) {
+                // constant progress updates
+            });
         });
     };
 
