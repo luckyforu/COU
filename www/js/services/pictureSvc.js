@@ -5,12 +5,6 @@ function pictureSvc($http, $q, configSvc) {
 
     var server = configSvc.appUrl;
 
-    var reqObj = {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    }
-
     function getDisplayPic() {
         var defer = $q.defer();
         $http.get(server + "/api/getUserPic")

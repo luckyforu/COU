@@ -6,7 +6,7 @@
         <div class="content has-header">
             <div class="list animate-fade-slide-in-right">
                 <a href="#/app/users/{{user._id}}" class="item item-avatar item-icon-right in" ng-repeat="user in users">
-                    <img src="img/NK.JPG"/>
+                    <img src={{imageRepo}}{{user._id}}/>
                     <h2>{{user.profile.basicInfo.name}}</h2>
                     <p>{{user.profile.status.status}}</p>
                     <i class="icon ion-chatbubble muted"></i>

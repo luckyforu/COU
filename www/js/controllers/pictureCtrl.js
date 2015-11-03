@@ -1,9 +1,12 @@
 ﻿'use strict';
-angular.module('checkout').controller('pictureCtrl', ['$scope', '$cordovaCamera', '$cordovaFileTransfer', 'configSvc', 'pictureSvc', pictureCtrl]);
+angular.module('checkout').controller('pictureCtrl', ['$scope', '$cordovaCamera', '$cordovaFileTransfer', 'authToken', 'configSvc', 'pictureSvc', pictureCtrl]);
 
-function pictureCtrl($scope, $cordovaCamera, $cordovaFileTransfer, configSvc, pictureSvc) {
+function pictureCtrl($scope, $cordovaCamera, $cordovaFileTransfer, authToken, configSvc, pictureSvc) {
 
     var server = configSvc.appUrl;
+    var userId = authToken.getUserId();
+    $scope.imgSrc = server + "/api/getUserPic/" + userId;
+    console.log($scope.imgSrc);
 
     var uploadOptions = {
         fileKey: "avatar",
@@ -28,7 +31,7 @@ function pictureCtrl($scope, $cordovaCamera, $cordovaFileTransfer, configSvc, pi
             var image = {};
             image.data = imageData;
             pictureSvc.uploadDisplayPic(image).then(function (response) {
-                $scope.imgSrc = "data:image/jpeg;base64," + response.imageData;
+                $scope.imgSrc = server + "/api/getUserPic/" + userId;
                 console.log("image Saved");
             }, function (error) {
                 console.log("image error " + error);
@@ -52,7 +55,7 @@ function pictureCtrl($scope, $cordovaCamera, $cordovaFileTransfer, configSvc, pi
         };
 
         $cordovaCamera.getPicture(options).then(function (imageUri) {
-            $cordovaFileTransfer.upload(server + "/api/postUserPic", "../../img/ionic.png", uploadOptions).then(function (result) {
+            $cordovaFileTransfer.upload(server + "/api/postUserPic/" + userId, imageUri, uploadOptions, true).then(function (result) {
                 console.log("SUCCESS: " + JSON.stringify(result.response));
             }, function (err) {
                 console.log("ERROR: " + JSON.stringify(err));
@@ -62,25 +65,13 @@ function pictureCtrl($scope, $cordovaCamera, $cordovaFileTransfer, configSvc, pi
         });
     };
 
-    $scope.uploadFile = function (files) {
-        pictureSvc.uploadDisplayPic(files).then(function (response) {
-            console.log("success");
-        },
-        function (err) {
-            console.log("Error occured while uploading picture " + err);
-        });
-    };
-
-    var getPicture = function () {
-        pictureSvc.getDisplayPic().then(function (response) {
-            console.log("success");
-            $scope.imgSrc = response;
-        },
-        function (err) {
-            console.log("Error occured while getting picture " + err);
-        });
-    };
-
-    getPicture();
+    //$scope.uploadFile = function (files) {
+    //    pictureSvc.uploadDisplayPic(files).then(function (response) {
+    //        console.log("success");
+    //    },
+    //    function (err) {
+    //        console.log("Error occured while uploading picture " + err);
+    //    });
+    //};
 
 }

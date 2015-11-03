@@ -9,14 +9,14 @@
             </div>
             <br/>
             <div class="col">
-                <button class="button button-dark" ng-click="selectPicture()">Upload Photo</button>
+                <button class="button button-dark" ng-click="selectPicture()">Choose Photo</button>
             </div>
-            <br />
-            <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
+            <!--<br />
+            <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />-->
         </div>
         <div class="card">
             <div class="item item-image">
-                <img ng-src="data:image/jpeg;base64,{{imgSrc}} " alt="Your Photo" />
+                <img src="{{imgSrc}} " alt="Your Photo" />
             </div>
         </div>
     </ion-content>

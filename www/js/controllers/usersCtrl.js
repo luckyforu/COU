@@ -1,9 +1,8 @@
 'use strict';
-angular.module('checkout').controller('usersCtrl', ['$state', '$stateParams', '$scope', '$http', '$timeout', '$cordovaGeolocation', 'ionicMaterialInk', 'ionicMaterialMotion', 'geolocationSvc', 'usersSvc', usersCtrl]);
+angular.module('checkout').controller('usersCtrl', ['$state', '$stateParams', '$scope', '$http', '$timeout', '$cordovaGeolocation', 'ionicMaterialInk', 'ionicMaterialMotion', 'geolocationSvc', 'configSvc', 'usersSvc', usersCtrl]);
 
-function usersCtrl($state, $stateParams, $scope, $http, $timeout, $cordovaGeolocation, ionicMaterialInk, ionicMaterialMotion, geolocationSvc, usersSvc) {
+function usersCtrl($state, $stateParams, $scope, $http, $timeout, $cordovaGeolocation, ionicMaterialInk, ionicMaterialMotion, geolocationSvc, configSvc, usersSvc) {
 
-    console.log(ionicMaterialMotion);
     //$scope.hideNavBar = function () {
     //    document.getElementsByTagName('ion-nav-bar')[0].style.display = 'none';
     //};
@@ -68,6 +67,7 @@ function usersCtrl($state, $stateParams, $scope, $http, $timeout, $cordovaGeoloc
     //        fabs[0].remove();
     //    }
     //};
+    $scope.imageRepo = configSvc.appUrl + "/api/getUserPic/";
 
     var getUsers = function () {
         geolocationSvc.getLocation().then(function (location) {
