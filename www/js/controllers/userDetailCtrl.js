@@ -1,10 +1,11 @@
 'use strict';
-angular.module('checkout').controller('userDetailCtrl', ['$scope', '$state', '$location', 'usersSvc', 'userDetailsSvc', userDetailCtrl]);
+angular.module('checkout').controller('userDetailCtrl', ['$scope', '$state', '$location', 'configSvc', 'usersSvc', 'userDetailsSvc', userDetailCtrl]);
 
-function userDetailCtrl($scope, $state, $location, usersSvc, userDetailsSvc) {
+function userDetailCtrl($scope, $state, $location, configSvc, usersSvc, userDetailsSvc) {
 
     var selectUser = function () {
         var userId = $state.params.userId;
+        $scope.imgSrc = configSvc.appUrl + "/api/getUserPic/" + userId;
         usersSvc.getUserDetail(userId).then(function (response) {
             userDetailsSvc.setUserDetails(response);
             $scope.userName = response.profile.basicInfo.name;
